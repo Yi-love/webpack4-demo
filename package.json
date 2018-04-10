@@ -1,0 +1,46 @@
+{
+  "name": "webpack4-demo",
+  "version": "1.0.0",
+  "description": "use webpack4 demo",
+  "main": "index.js",
+  "dependencies": {
+    "tui-chart": "^3.0.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.5",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-stage-3": "^6.24.1",
+    "css-loader": "^0.28.11",
+    "file-loader": "^0.11.2",
+    "html-webpack-plugin": "^3.2.0",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.5",
+    "mini-css-extract-plugin": "^0.4.0",
+    "node-sass": "^4.5.3",
+    "postcss-loader": "^2.0.6",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.18.2",
+    "url-loader": "^0.5.9",
+    "webpack": "^4.5.0",
+    "webpack-cli": "^2.0.14"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yi-love",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yi-love/webpack4-demo.git"
+  },
+  "keywords": [
+    "webpack4"
+  ],
+  "bugs": {
+    "url": "https://github.com/Yi-love/webpack4-demo/issues"
+  },
+  "homepage": "https://github.com/Yi-love/webpack4-demo#readme"
+}
