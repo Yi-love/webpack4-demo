@@ -62,7 +62,8 @@ function getLoaders(array ,development){
 
 module.exports = {
     entry:{
-        index:'./client/index.js'
+        index:'./client/index.js',
+        test:'./client/test.js'
     },
     resolve:{
         extensions: ['.js','.json','.css' ,'.less' ,'.sass','.scss']
@@ -102,7 +103,7 @@ module.exports = {
             maxAsyncRequests: 5,
             maxInitialRequests: 3,
             automaticNameDelimiter: '-',
-            name: true,
+            name: 'vendor',
             cacheGroups: {
                 default: {
                     minChunks: 2,
@@ -116,9 +117,14 @@ module.exports = {
             }
         }),
         new HtmlWebpackPlugin({
-            inject: true,
             filename: './../index.html',
+            chunks: ['vendor','index'],
             template: path.resolve(__dirname , './client/index.html')
+        }),
+        new HtmlWebpackPlugin({
+            filename: './../test.html',
+            chunks: ['vendor','test'],
+            template: path.resolve(__dirname , './client/test.html')
         }),
         new MiniCssExtractPlugin({ //提取css公共代码
             filename:'[name].css?v=[contenthash]'
