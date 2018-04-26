@@ -1,3 +1,5 @@
+import Vue from 'vue';
+
 console.log('ok..........test start');
 
 let ab = 567567;

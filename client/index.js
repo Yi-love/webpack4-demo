@@ -5,6 +5,7 @@ import './index.scss';
 
 import {lineChart} from 'tui-chart';
 
+import Vue from 'vue';
 
 console.log('it work' , lineChart);
 

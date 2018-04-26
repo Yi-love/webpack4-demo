@@ -2,6 +2,8 @@
 
 const path = require('path');
 const webpack = require('webpack');
+
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
@@ -61,6 +63,7 @@ function getLoaders(array ,development){
 }
 
 module.exports = {
+    mode: 'production',
     entry:{
         index:'./client/index.js',
         test:'./client/test.js'
@@ -96,6 +99,7 @@ module.exports = {
     },
     devtool: '#source-map',
     plugins:[
+        new CleanWebpackPlugin([path.resolve(__dirname , './static')]),
         new webpack.optimize.SplitChunksPlugin({
             chunks: 'all',
             minSize: 30000,
@@ -103,27 +107,28 @@ module.exports = {
             maxAsyncRequests: 5,
             maxInitialRequests: 3,
             automaticNameDelimiter: '-',
-            name: 'vendor',
+            name: true,
             cacheGroups: {
-                default: {
-                    minChunks: 2,
-                    priority: -20,
-                    reuseExistingChunk: true
+                vue: {
+                    test: /[\\/]node_modules[\\/]vue[\\/]/,
+                    priority: -10,
+                    name: 'vue'
                 },
-                vendor: {
-                    test: /[\\/]node_modules[\\/]/,
-                    priority: -10
+                'tui-chart': {
+                    test: /[\\/]node_modules[\\/]tui-chart[\\/]/,
+                    priority: -20,
+                    name: 'tui-chart'
                 }
             }
         }),
         new HtmlWebpackPlugin({
             filename: './../index.html',
-            chunks: ['vendor','index'],
+            chunks: ['vue','tui-chart','index'],
             template: path.resolve(__dirname , './client/index.html')
         }),
         new HtmlWebpackPlugin({
             filename: './../test.html',
-            chunks: ['vendor','test'],
+            chunks: ['vue','test'],
             template: path.resolve(__dirname , './client/test.html')
         }),
         new MiniCssExtractPlugin({ //提取css公共代码
