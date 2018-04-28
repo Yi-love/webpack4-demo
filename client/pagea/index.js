@@ -2,9 +2,9 @@ import 'babel-polyfill';
 
 import Vue from 'vue';
 
-import './common.scss';
+import '../common.scss';
 
-import index from './index';
+import index from './index.vue';
 
 Vue.config.productionTip = false;
 

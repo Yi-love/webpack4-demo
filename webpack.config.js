@@ -9,8 +9,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'development', //编译模式
-    entry:{
-        index:'./client/app.js' //入口文件
+    entry:{//入口文件
+        pagea:'./client/pagea/index.js', 
+        pageb:'./client/pageb/index.js'
     },
     resolve:{
         extensions: ['.js', '.vue', '.json'], //import引入时，无需写扩展名的文件
@@ -34,8 +35,8 @@ module.exports = {
             }
         },
         {
-            test: /\.s?[ac]ss$/,
-            use: ['style-loader','css-loader','postcss-loader','sass-loader'] //postcss-loader 依赖 postcss-config.js
+            test: /\.s?[ac]ss$/,//postcss-loader 依赖 postcss-config.js
+            use: ['style-loader','css-loader','postcss-loader','sass-loader'] 
         },
         {
             test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -53,14 +54,23 @@ module.exports = {
     output:{
         filename:'js/[name].js?v=[hash]',
         path:path.resolve(__dirname , './static/dist'),
-        publicPath:'./dist/'
+        publicPath:'/dist/'
     },
     devtool: '#source-map',
     plugins:[
-        new CleanWebpackPlugin([path.resolve(__dirname , './static')]),
+        new CleanWebpackPlugin([
+            path.resolve(__dirname , './static'),
+            path.resolve(__dirname , './server/views')
+        ]),
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
-            filename: './../../server/views/index.html',
+            filename: './../../server/views/pagea.html',
+            chunks:['pagea'],
+            template: path.resolve(__dirname , './client/template.html')
+        }),
+        new HtmlWebpackPlugin({
+            filename: './../../server/views/pageb.html',
+            chunks:['pageb'],
             template: path.resolve(__dirname , './client/template.html')
         }),
         new webpack.NoEmitOnErrorsPlugin()

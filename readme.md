@@ -1,7 +1,7 @@
 # webpack4 demo
 use webpack4 build you application demo.
 
-> webpack4 构建单入口程序案例。
+> webpack4 构建多入口，多页面案例一。
 
 ## npm install
 
