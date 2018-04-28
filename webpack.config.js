@@ -53,7 +53,7 @@ module.exports = {
     output:{
         filename:'js/[name].js?v=[hash]',
         path:path.resolve(__dirname , './static/dist'),
-        publicPath:'./dist/'
+        publicPath:'/dist/'
     },
     devtool: '#source-map',
     plugins:[
