@@ -6,6 +6,7 @@ const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     mode: 'development', //编译模式
@@ -36,7 +37,7 @@ module.exports = {
         },
         {
             test: /\.s?[ac]ss$/,//postcss-loader 依赖 postcss-config.js
-            use: ['style-loader','css-loader','postcss-loader','sass-loader'] 
+            use: [MiniCssExtractPlugin.loader,'css-loader','postcss-loader','sass-loader'] 
         },
         {
             test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -63,15 +64,39 @@ module.exports = {
             path.resolve(__dirname , './server/views')
         ]),
         new VueLoaderPlugin(),
+        new webpack.optimize.SplitChunksPlugin({
+            chunks: 'all',
+            minSize: 30000,
+            minChunks: 1,
+            maxAsyncRequests: 5,
+            maxInitialRequests: 3,
+            automaticNameDelimiter: '-',
+            name: true,
+            cacheGroups: {
+                vue: {
+                    test: /[\\/]node_modules[\\/]vue[\\/]/,
+                    priority: -10,
+                    name: 'vue'
+                },
+                'tui-chart': {
+                    test: /[\\/]node_modules[\\/]tui-chart[\\/]/,
+                    priority: -20,
+                    name: 'tui-chart'
+                }
+            }
+        }),
         new HtmlWebpackPlugin({
             filename: './../../server/views/pagea.html',
-            chunks:['pagea'],
+            chunks:['vue','tui-chart','pagea'],
             template: path.resolve(__dirname , './client/template.html')
         }),
         new HtmlWebpackPlugin({
             filename: './../../server/views/pageb.html',
             chunks:['pageb'],
             template: path.resolve(__dirname , './client/template.html')
+        }),
+        new MiniCssExtractPlugin({ //提取为外部css代码
+            filename:'[name].css?v=[contenthash]'
         }),
         new webpack.NoEmitOnErrorsPlugin()
     ]
