@@ -1,15 +1,7 @@
 # webpack4 demo
 use webpack4 build you application demo.
 
-> webpack4 多入口，多页面项目构建案例。
-
-## branch
-
-```
-step_0 单入口，单页面案例
-step_1 多入口，多页面案例
-step_2 多入口，多页面案例-升级版
-```
+> webpack4 构建多入口，多页面案例二。
 
 ## npm install
 
@@ -17,11 +9,19 @@ step_2 多入口，多页面案例-升级版
 npm install
 ```
 
+### dir
+
+```
+client  保存前端文件目录(frontEnd源码)
+server  Node服务文件目录(编译完成并注入了js&css的html文件会保存到这个目录下的views)
+static  静态资源文件目录(所有前端编译后的文件都会保存到这个目录)
+```
+
 ## build
 
 ```sh
 webpack
-npm run develop
+npm run develop //启动node
 ```
 
-open `127.0.0.1/`.
+open `127.0.0.1:4000`.

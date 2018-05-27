@@ -1,3 +1,4 @@
 node_modules
 npm_*
 static/*
+server/views

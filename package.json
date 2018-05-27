@@ -2,16 +2,25 @@
   "name": "webpack4-demo",
   "version": "1.0.0",
   "description": "use webpack4 demo",
-  "main": "index.js",
+  "main": "server/index.js",
+  "scripts": {
+    "develop": "node server/watcher.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
-    "tui-chart": "^3.0.1",
-    "vue": "^2.5.16"
+    "ejs": "^2.5.7",
+    "koa": "^2.3.0",
+    "koa-body": "^2.3.0",
+    "koa-router": "^7.2.1",
+    "koa-static": "^4.0.1",
+    "koa-views": "^6.0.2"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.5",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
     "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-stage-3": "^6.24.1",
     "clean-webpack-plugin": "^0.1.19",
@@ -25,12 +34,13 @@
     "postcss-loader": "^2.0.6",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
+    "tui-chart": "^3.1.0",
     "url-loader": "^0.5.9",
+    "vue": "^2.5.16",
+    "vue-loader": "^15.0.4",
+    "vue-template-compiler": "^2.5.16",
     "webpack": "^4.6.0",
     "webpack-cli": "^2.0.14"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Yi-love",
   "license": "MIT",
