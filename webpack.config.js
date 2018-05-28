@@ -12,7 +12,7 @@ module.exports = {
     mode: 'development', //编译模式
     entry:{//入口文件
         pagea:'./client/pagea/index.js', 
-        pageb:'./client/pageb/index.js'
+        pageb:['babel-polyfill' , './client/pageb/index.js']
     },
     resolve:{
         extensions: ['.js', '.vue', '.json'], //import引入时，无需写扩展名的文件
@@ -92,7 +92,7 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             filename: './../../server/views/pageb.html',
-            chunks:['pageb'],
+            chunks:['vue','pageb'],
             template: path.resolve(__dirname , './client/template.html')
         }),
         new MiniCssExtractPlugin({ //提取为外部css代码

@@ -16,6 +16,6 @@ app.use(serve(path.join(__dirname , '../static')));
 app.use(views('server/views',  { map: {html: 'ejs'}}));
 routers(app);
 
-app.listen(4000 ,'127.0.0.1', ()=>{
+app.listen(4000 , ()=>{
   console.log(`server start listening port 4000...`);
 });

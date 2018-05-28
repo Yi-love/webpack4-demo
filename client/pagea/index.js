@@ -1,5 +1,3 @@
-import 'babel-polyfill';
-
 import Vue from 'vue';
 import {lineChart} from 'tui-chart';
 
