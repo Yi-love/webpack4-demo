@@ -48,7 +48,7 @@ module.exports = {
             loader: 'url-loader'
         }]
     },
-    watch: true,
+    watch: false,
     watchOptions: { //不监听目录
         ignored: [/node_modules/ , '/static/']
     },
