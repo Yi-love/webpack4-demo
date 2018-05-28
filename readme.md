@@ -25,3 +25,22 @@ npm run develop //启动node
 ```
 
 open `127.0.0.1:4000`.
+
+
+
+## Docker
+
+
+create image:
+
+```
+docker build -t webpack4 .
+```
+
+run:
+
+```
+docker run -p 8000:4000 webpack4
+```
+
+open `http://localhost:8000/`.
