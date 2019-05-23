@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import VueI18n from 'vue-i18n';
 
 import '../scss/common.scss';
 
@@ -6,8 +7,12 @@ import pageb from '../components/pageb/index.vue';
 
 Vue.config.productionTip = false;
 
+Vue.use(VueI18n);
+
+const i18n = new VueI18n({locale: window._i18n.locale});
+
 new Vue({
     el: '#app',
-    template: '<pageb/>',
-    components : {pageb}
+    i18n,
+    render: h=>h(pageb)
 });
