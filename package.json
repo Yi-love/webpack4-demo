@@ -6,7 +6,7 @@
   "scripts": {
     "develop": "node server/watcher.js",
     "webpack": "node_modules/.bin/webpack",
-    "test": "node server/index.js"
+    "prod": "node server/index.js"
   },
   "dependencies": {
     "ejs": "^2.6.1",
