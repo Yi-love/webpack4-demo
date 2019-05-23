@@ -6,12 +6,17 @@
     <meta name="format-detection" content="telephone=no"/>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title><%=title%></title>
-    <link rel="stylesheet" href="/dist/pageb.css?v=4e44ff92e48f1b256934"/><!-- inject:css -->
+    <title><%=__('webpack构建案例页面B')%></title>
+    <link rel="stylesheet" href="/dist/pageb.css?v=bcb878054148ec60135a"/><!-- inject:css -->
 </head>
 <body>
     <h2>Page B</h2>
     <div id="app"></div>
-    <script  src="/dist/vue.js?v=f64e4c2e60051ee6c381"></script><script  src="/dist/pageb.js?v=f64e4c2e60051ee6c381"></script><!-- inject:js -->
+    <script>
+        window._i18n = {
+            locale: '<%=lang%>'
+        };
+    </script>
+    <script  src="/dist/vue.js?v=94ae2a0a9b17ab566e11"></script><script  src="/dist/pageb.js?v=94ae2a0a9b17ab566e11"></script><!-- inject:js -->
 </body>
 </html>

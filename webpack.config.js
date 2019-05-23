@@ -99,17 +99,12 @@ module.exports = {
                     test: /[\\/]node_modules[\\/]vue[\\/]/,
                     priority: -10,
                     name: 'vue'
-                },
-                'tui-chart': {
-                    test: /[\\/]node_modules[\\/]tui-chart[\\/]/,
-                    priority: -20,
-                    name: 'tui-chart'
                 }
             }
         }),
         new HtmlInjectPlugin({
             filename: './../../server/views/pagea.html',
-            chunks:['vue','tui-chart','pagea'],
+            chunks:['vue','pagea'],
             template: path.resolve(__dirname , './client/views/pagea.html')
         }),
         new HtmlInjectPlugin({

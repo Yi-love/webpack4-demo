@@ -7,13 +7,13 @@ router.get('/', async(ctx)=>{
 
 router.get('/pagea', async(ctx)=>{
     return ctx.render('pagea' , {
-        title:'Webpack4 构建案例_页面A'
+        lang: ctx.getLang()
     });
 });
 
 router.get('/pageb', async(ctx)=>{
     return ctx.render('pageb' , {
-        title:'Webpack4 构建案例_页面B'
+        lang: ctx.getLang()
     });
 });
 
