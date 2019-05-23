@@ -43,7 +43,7 @@ open `http://localhost:4000/`.
 
 ### 版本历史
 
-- 2028
+- 2018
 
 step_0 单入口，单页面案例 https://github.com/Yi-love/webpack4-demo/tree/step_0
 
@@ -53,4 +53,4 @@ step_2 多入口，多页面案例-升级版 https://github.com/Yi-love/webpack4
 
 - 2019-05-23
 
-master 多入口，多页面，多语言 https://github.com/Yi-love/webpack4-demo/tree/step_3
+step_3 多入口，多页面，多语言 https://github.com/Yi-love/webpack4-demo/tree/step_3

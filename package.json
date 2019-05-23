@@ -1,6 +1,6 @@
 {
   "name": "webpack4-demo",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "use webpack4 demo",
   "main": "server/index.js",
   "scripts": {
