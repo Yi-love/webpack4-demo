@@ -6,9 +6,18 @@
 </template>
 
 <script>
-    import './index.css';
-
     export default {
         name: 'pageb'
     };
 </script>
+
+<style lang="scss" scoped>
+.title{
+    background: #ccc;
+    margin: 0;
+    box-sizing: border-box;
+    padding: 1rem;
+    color: red;
+    background: url(./bg.jpg);
+}
+</style>

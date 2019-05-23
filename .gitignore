@@ -1,4 +1,4 @@
 node_modules
 npm_*
-static/*
+static/dist
 server/views

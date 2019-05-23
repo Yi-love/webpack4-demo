@@ -1,31 +1,37 @@
 'use strict';
-
+/*global __dirname */
 const path = require('path');
 const webpack = require('webpack');
 
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlInjectPlugin = require('html-inject-plugin');
 
 module.exports = {
     mode: 'development', //编译模式
     entry:{//入口文件
-        pagea:'./client/pagea/index.js', 
-        pageb:['babel-polyfill' , './client/pageb/index.js']
+        pagea: ['core-js' ,'./client/entries/pagea.js'],
+        pageb: ['core-js' ,'./client/entries/pageb.js']
     },
     resolve:{
-        extensions: ['.js', '.vue', '.json'], //import引入时，无需写扩展名的文件
+        extensions: ['.js' , '.json'], //import引入时，无需写扩展名的文件
         alias: {
             'vue$': 'vue/dist/vue.esm.js' //完整版本的vue
         }
     },
     module:{
-        rules:[
-        {
+        rules:[{
             test:/\.js$/,
             exclude: /node_modules/,
-            loader:'babel-loader' //js编译 依赖.babelrc
+            loader:'babel-loader', //js编译
+            options: {
+                presets: [['@babel/preset-env', {
+                    useBuiltIns: 'entry',
+                    corejs: 3
+                }]],
+                plugins: [require('@babel/plugin-transform-runtime')]
+            }
         },
         {
             test:/\.vue$/,
@@ -36,33 +42,49 @@ module.exports = {
             }
         },
         {
+            resourceQuery: /blockType=i18n/,
+            loader: '@kazupon/vue-i18n-loader'
+        },
+        {
+            test:/\.html?$/,
+            loader: 'html-loader'
+        },
+        {
             test: /\.s?[ac]ss$/,//postcss-loader 依赖 postcss-config.js
             use: [MiniCssExtractPlugin.loader,'css-loader','postcss-loader','sass-loader'] 
         },
         {
             test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-            loader: 'url-loader'
+            loader: 'url-loader',
+            options:{
+                limit:8192,
+                useRelativePath:false,
+                publicPath: '/dist/',
+                name:'images/[name]-[hash:8].[ext]'
+            }
         },
         {
             test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
             loader: 'url-loader'
         }]
     },
-    watch: false,
+    watch: true,
     watchOptions: { //不监听目录
         ignored: [/node_modules/ , '/static/']
     },
     output:{
-        filename:'js/[name].js?v=[hash]',
+        filename:'[name].js?v=[hash]',
         path:path.resolve(__dirname , './static/dist'),
         publicPath:'/dist/'
     },
-    devtool: '#source-map',
+    devtool: 'source-map',
     plugins:[
-        new CleanWebpackPlugin([
-            path.resolve(__dirname , './static'),
-            path.resolve(__dirname , './server/views')
-        ]),
+        new CleanWebpackPlugin({
+            cleanOnceBeforeBuildPatterns: [
+                path.resolve(__dirname , './static/dist'),
+                path.resolve(__dirname , './server/views')
+            ]
+        }),
         new VueLoaderPlugin(),
         new webpack.optimize.SplitChunksPlugin({
             chunks: 'all',
@@ -85,15 +107,15 @@ module.exports = {
                 }
             }
         }),
-        new HtmlWebpackPlugin({
+        new HtmlInjectPlugin({
             filename: './../../server/views/pagea.html',
             chunks:['vue','tui-chart','pagea'],
-            template: path.resolve(__dirname , './client/template.html')
+            template: path.resolve(__dirname , './client/views/pagea.html')
         }),
-        new HtmlWebpackPlugin({
+        new HtmlInjectPlugin({
             filename: './../../server/views/pageb.html',
             chunks:['vue','pageb'],
-            template: path.resolve(__dirname , './client/template.html')
+            template: path.resolve(__dirname , './client/views/pageb.html')
         }),
         new MiniCssExtractPlugin({ //提取为外部css代码
             filename:'[name].css?v=[contenthash]'
