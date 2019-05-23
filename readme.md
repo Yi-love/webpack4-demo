@@ -1,5 +1,5 @@
-# webpack4 demo
-这是一个webpack4的node.js案例。
+# webpack4 demo【docker】
+**Docker封装版**：这是一个webpack4的node.js案例。
 
 - Node.js
 - Koa
@@ -8,28 +8,18 @@
 - 多语言
 - 多页面
 
-## npm install
-首先安装需要的依赖：
+## 创建镜像
 
 ```sh
-npm ci node-sass --sass_binary_site=https://npm.taobao.org/mirrors/node-sass/
+docker build -t webpack4:3.0 .
 ```
 
-> 因为依赖node-sass，指定node-sass镜像地址到淘宝镜像地址，加速下载。
-
-## build
-构建前端页面，启动node.js服务。
-
-前端构建：
+## 生成容器
 
 ```sh
-npm run webpack
+docker container run -p 4000:4000 webpack4:3.0
 ```
 
-后端服务：
-```sh
-npm run develop //启动node
-```
 
 open `127.0.0.1:4000`.
 
