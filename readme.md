@@ -40,3 +40,14 @@ open `http://localhost:4000/`.
 - client  保存前端文件目录(frontEnd源码)
 - server  Node服务文件目录(编译完成并注入了js&css的html文件会保存到这个目录下的views)
 - static  静态资源文件目录(所有前端编译后的文件都会保存到这个目录)
+
+### 版本历史
+
+- 2028
+
+step_0 单入口，单页面案例 https://github.com/Yi-love/webpack4-demo/tree/step_0
+step_1 多入口，多页面案例  https://github.com/Yi-love/webpack4-demo/tree/step_1
+step_2 多入口，多页面案例-升级版 https://github.com/Yi-love/webpack4-demo/tree/step_2
+
+- 2019-05-23
+master 多入口，多页面，多语言 https://github.com/Yi-love/webpack4-demo/tree/step_3
