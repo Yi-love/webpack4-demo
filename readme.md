@@ -33,7 +33,7 @@ npm run develop //启动node
 
 open `127.0.0.1:4000`.
 
-open `http://localhost:8000/`.
+open `http://localhost:4000/`.
 
 ### 目录结构
 
