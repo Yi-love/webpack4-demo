@@ -22,7 +22,7 @@
 import childPage from './child.vue';
 export default {
     name: 'pagea',
-    components:{childPage}
+    components: { childPage }
 };
 </script>
 

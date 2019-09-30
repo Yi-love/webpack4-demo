@@ -4,8 +4,10 @@ module.exports = {
         "commonjs": true,
         "es6": true
     },
-    "extends": ["eslint:recommended"],
+    "extends": ["plugin:vue/essential" , "standard"],
+	"parser": "vue-eslint-parser",
     "parserOptions": {
+        "parser": "babel-eslint",
         "ecmaVersion": 2017,
         "sourceType": "module"
     },
@@ -26,5 +28,8 @@ module.exports = {
             "error",
             "always"
         ]
-    }
+    },
+    "plugins": [
+        "vue"
+    ]
 };

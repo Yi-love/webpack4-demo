@@ -4,14 +4,14 @@
  * @param {*} ctx
  * @returns
  */
-async function getWEBLang(ctx){
+async function getWEBLang (ctx) {
     let lang = ctx.cookies.get('locale');
-    console.log('lang--------------->' , lang);
-    if ( !lang ){
-        lang = ['cn' , 'en'][Math.floor(Math.random() * 10) % 2];
+    console.log('lang--------------->', lang);
+    if (!lang) {
+        lang = ['cn', 'en'][Math.floor(Math.random() * 10) % 2];
     }
-    return ()=>{
-        return lang;   
+    return () => {
+        return lang;
     };
 }
 /**
@@ -20,8 +20,8 @@ async function getWEBLang(ctx){
  * @param {*} ctx
  * @param {*} next
  */
-exports.baseContext = async(ctx, next)=>{
-    //获取语言
+exports.baseContext = async (ctx, next) => {
+    // 获取语言
     ctx.getLang = await getWEBLang(ctx);
     await next();
 };

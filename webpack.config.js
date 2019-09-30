@@ -1,5 +1,5 @@
 'use strict';
-/*global __dirname */
+/* global __dirname */
 const path = require('path');
 const webpack = require('webpack');
 
@@ -9,22 +9,22 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlInjectPlugin = require('html-inject-plugin');
 
 module.exports = {
-    mode: 'development', //编译模式
-    entry:{//入口文件
-        pagea: ['core-js' ,'./client/entries/pagea.js'],
-        pageb: ['core-js' ,'./client/entries/pageb.js']
+    mode: 'development', // 编译模式
+    entry: {// 入口文件
+        pagea: ['core-js', './client/app/pagea/main.js'],
+        pageb: ['core-js', './client/app/pageb/main.js']
     },
-    resolve:{
-        extensions: ['.js' , '.json'], //import引入时，无需写扩展名的文件
+    resolve: {
+        extensions: ['.js', '.json'], // import引入时，无需写扩展名的文件
         alias: {
-            'vue$': 'vue/dist/vue.esm.js' //完整版本的vue
+            vue$: 'vue/dist/vue.esm.js' // 完整版本的vue
         }
     },
-    module:{
-        rules:[{
-            test:/\.js$/,
+    module: {
+        rules: [{
+            test: /\.js$/,
             exclude: /node_modules/,
-            loader:'babel-loader', //js编译
+            loader: 'babel-loader', // js编译
             options: {
                 presets: [['@babel/preset-env', {
                     useBuiltIns: 'entry',
@@ -34,7 +34,7 @@ module.exports = {
             }
         },
         {
-            test:/\.vue$/,
+            test: /\.vue$/,
             include: [path.join(__dirname, './client/')],
             loader: 'vue-loader',
             options: {
@@ -46,21 +46,21 @@ module.exports = {
             loader: '@kazupon/vue-i18n-loader'
         },
         {
-            test:/\.html?$/,
+            test: /\.html?$/,
             loader: 'html-loader'
         },
         {
-            test: /\.s?[ac]ss$/,//postcss-loader 依赖 postcss-config.js
-            use: [MiniCssExtractPlugin.loader,'css-loader','postcss-loader','sass-loader'] 
+            test: /\.s?[ac]ss$/, // postcss-loader 依赖 postcss-config.js
+            use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader']
         },
         {
             test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
             loader: 'url-loader',
-            options:{
-                limit:8192,
-                useRelativePath:false,
+            options: {
+                limit: 8192,
+                useRelativePath: false,
                 publicPath: '/dist/',
-                name:'images/[name]-[hash:8].[ext]'
+                name: 'images/[name]-[hash:8].[ext]'
             }
         },
         {
@@ -69,20 +69,20 @@ module.exports = {
         }]
     },
     watch: true,
-    watchOptions: { //不监听目录
-        ignored: [/node_modules/ , '/static/']
+    watchOptions: { // 不监听目录
+        ignored: [/node_modules/, '/static/']
     },
-    output:{
-        filename:'[name].js?v=[hash]',
-        path:path.resolve(__dirname , './static/dist'),
-        publicPath:'/dist/'
+    output: {
+        filename: '[name].js?v=[hash]',
+        path: path.resolve(__dirname, './static/dist'),
+        publicPath: '/dist/'
     },
     devtool: 'source-map',
-    plugins:[
+    plugins: [
         new CleanWebpackPlugin({
             cleanOnceBeforeBuildPatterns: [
-                path.resolve(__dirname , './static/dist'),
-                path.resolve(__dirname , './server/views')
+                path.resolve(__dirname, './static/dist'),
+                path.resolve(__dirname, './server/views')
             ]
         }),
         new VueLoaderPlugin(),
@@ -104,16 +104,16 @@ module.exports = {
         }),
         new HtmlInjectPlugin({
             filename: './../../server/views/pagea.html',
-            chunks:['vue','pagea'],
-            template: path.resolve(__dirname , './client/views/pagea.html')
+            chunks: ['vue', 'pagea'],
+            template: path.resolve(__dirname, './client/views/pagea.html')
         }),
         new HtmlInjectPlugin({
             filename: './../../server/views/pageb.html',
-            chunks:['vue','pageb'],
-            template: path.resolve(__dirname , './client/views/pageb.html')
+            chunks: ['vue', 'pageb'],
+            template: path.resolve(__dirname, './client/views/pageb.html')
         }),
-        new MiniCssExtractPlugin({ //提取为外部css代码
-            filename:'[name].css?v=[contenthash]'
+        new MiniCssExtractPlugin({ // 提取为外部css代码
+            filename: '[name].css?v=[contenthash]'
         }),
         new webpack.NoEmitOnErrorsPlugin()
     ]

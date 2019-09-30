@@ -6,9 +6,9 @@
 </template>
 
 <script>
-    export default {
-        name: 'pageb'
-    };
+export default {
+    name: 'pageb'
+};
 </script>
 
 <style lang="scss" scoped>
