@@ -56,3 +56,7 @@ step_2 多入口，多页面案例-升级版 https://github.com/Yi-love/webpack4
 step_3 多入口，多页面，多语言 https://github.com/Yi-love/webpack4-demo/tree/step_3
 
 step_4 【docker】多入口，多页面，多语言  https://github.com/Yi-love/webpack4-demo/tree/step_4
+
+- 2019-09-30
+
+step_5 多入口，多页面，多语言(框架优化版)) https://github.com/Yi-love/webpack4-demo/tree/step_5
