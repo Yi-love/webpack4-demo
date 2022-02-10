@@ -44,7 +44,7 @@
     "html-inject-plugin": "^1.0.6",
     "html-loader": "^0.5.5",
     "mini-css-extract-plugin": "^0.6.0",
-    "node-sass": "^4.11.0",
+    "node-sass": "^7.0.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^7.1.0",
